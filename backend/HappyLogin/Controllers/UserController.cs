@@ -16,11 +16,13 @@ namespace HappyLogin.Controllers
     {
         private readonly ILogger<UserController> _logger;
         private readonly DataContext _context;
+        private readonly EmailService _emailService;
 
-        public UserController(ILogger<UserController> logger, DataContext context)
+        public UserController(ILogger<UserController> logger, DataContext context, EmailService emailService)
         {
             _logger = logger;
             _context = context;
+            _emailService = emailService;
         }
 
         [HttpPost("register")]
@@ -33,11 +35,17 @@ namespace HappyLogin.Controllers
             {
                 Name = dto.Name,
                 Email = dto.Email,
-                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password)
+                Password = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                CreateDate = DateTime.UtcNow,
+                EmailConfirmed = false
             };
 
             _context.Users.Add(user);
             _context.SaveChanges();
+
+            var confirmationUrl = $"https://seusite.com/confirm-email/{user.Id}";
+            _emailService.SendConfirmationEmail(user.Email, user.Name, confirmationUrl);
+
             return Ok("Usuário registrado com sucesso!");
         }
 
