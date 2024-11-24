@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HappyLogin")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+310460bfbb863deabdc5fc04093ac819673f27b1")]
 [assembly: System.Reflection.AssemblyProductAttribute("HappyLogin")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HappyLogin")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
