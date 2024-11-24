@@ -21,6 +21,13 @@ namespace HappyLogin
             services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(connectionString));
 
+            services.AddSingleton(new EmailService(
+                smtpServer: "smtp.gmail.com",
+                smtpPort: 587,
+                smtpUser: "happylogintechnicaltest@gmail.com",
+                smtpPass: "nvgbduuvmlgoayci"
+            ));
+
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
