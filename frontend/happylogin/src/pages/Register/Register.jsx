@@ -1,27 +1,35 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import './Login.css';
-import login from '../../assets/images/login.jpg';
+import './Register.css';
+import register from '../../assets/images/register.jpg';
 import chathappy from '../../assets/icons/chathappy.png';
 
-const Login = () => {
+const Register = () => {
+  const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Login:', { email, password });
+    console.log('Login:', { name, email, password });
   };
 
   return (
-    <div className="login-container">
-      <img src={login} alt="login-happy-people" className="login-image"/>
-      <div className="login-form-container">
-        <form onSubmit={handleSubmit} class="login-form">
-          <div class="login-title">
-            <h1>Happy Login</h1>
+    <div class="register-container">
+      <img src={register} alt="register-happy-people" class="register-image"/>
+      <div class="register-form-container">
+        <form onSubmit={handleSubmit} class="register-form">
+          <div class="register-title">
+            <h1>Venha ser Happy</h1>
             <img src={chathappy} alt="chat-happy"></img>
           </div>
+          <label bold>Nome</label>
+          <input 
+            type="text" 
+            placeholder="Digite seu Nome" 
+            value={email} 
+            onChange={(e) => setName(e.target.value)} 
+            required 
+          />
           <label bold>E-mail</label>
           <input 
             type="email" 
@@ -38,15 +46,14 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)} 
             required 
           />
-          <a href="/" class="forgot-password">Esqueci minha senha</a>
           <button type="submit" class="button-enter">
-            Entrar
+            Registrar
           </button>
-          <Link to ="/register" class="register">Ainda não tenho uma conta</Link>
+          <a href="/" class="back">Voltar</a>
         </form>
       </div>
     </div>
   );
 };
 
-export default Login;
+export default Register;
