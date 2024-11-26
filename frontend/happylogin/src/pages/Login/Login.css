@@ -1,0 +1,91 @@
+.login-container {
+    display: flex;
+    width: 100%;
+  }
+
+.login-image {
+    height: auto;
+    width: 50%;
+
+    @media (max-width: 1594px) {
+        display: none;
+    }
+}
+  
+.login-form-container {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-form {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    height: 50%;
+    padding: 2rem;
+    background-color: #F4F4F4;
+    border-radius: 10px;
+
+    @media (max-width: 1594px) {
+        height: auto;
+    }
+}
+
+.login-form label{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    font-weight: bold; 
+    font-size: 16px;
+}
+
+.login-title {
+    display: flex;
+    gap: 7px;
+}
+
+.login-title img{
+    width: 35px;
+    height: 35px;
+    margin-top: 30px;
+  }
+
+.login-form input {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  height: 30px;
+  background-color: #E3E1E1;
+  font-size: 16px;
+}
+
+.forgot-password {
+    margin-left: auto;
+    margin-bottom: 40px;
+    color: black;
+}
+
+.button-enter {
+  padding: 10px;
+  background: #57A1D4;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  height: 43px;
+  font-size: 24px;
+  font-weight: bold; 
+}
+
+.button-enter:hover {
+  background: #3275A4;
+}
+
+.register {
+    margin: 0 auto;
+    color: black;
+    margin-top: 25px;
+}
+  

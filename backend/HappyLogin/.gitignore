@@ -1,0 +1,8 @@
+.vs/
+bin/
+obj/
+logs/
+DesignTimeBuild/
+FileContentIndex/
+ProjectEvaluation/
+v17/
