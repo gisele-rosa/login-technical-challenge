@@ -94,4 +94,14 @@
   justify-content: center;
   align-items: center;
 }
+
+.input-error {
+  border: 2px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
+}
   
