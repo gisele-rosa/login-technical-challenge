@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner';
+import { loginUser } from '../../utils/api';
 import './Login.css';
 import login from '../../assets/images/login.jpg';
 import chathappy from '../../assets/icons/chathappy.png';
@@ -7,10 +9,21 @@ import chathappy from '../../assets/icons/chathappy.png';
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login:', { email, password });
+    setIsLoading(true);
+    try {
+      const newRecord = await loginUser(email, password);
+      console.log(`Dados criados com sucesso! ID: ${newRecord.id}`);
+      navigate('/success');
+    } catch (error) {
+      setIsLoading(false);
+      console.error('Erro ao criar os dados:', error);
+      throw error;
+    }
   };
 
   return (
@@ -18,11 +31,11 @@ const Login = () => {
       <img src={login} alt="login-happy-people" className="login-image"/>
       <div className="login-form-container">
         <form onSubmit={handleSubmit} class="login-form">
-          <div class="login-title">
+          <div className="login-title">
             <h1>Happy Login</h1>
             <img src={chathappy} alt="chat-happy"></img>
           </div>
-          <label bold>E-mail</label>
+          <label>E-mail</label>
           <input 
             type="email" 
             placeholder="Digite seu e-mail" 
@@ -38,11 +51,17 @@ const Login = () => {
             onChange={(e) => setPassword(e.target.value)} 
             required 
           />
-          <a href="/" class="forgot-password">Esqueci minha senha</a>
-          <button type="submit" class="button-enter">
+          <a href="/" className="forgot-password">Esqueci minha senha</a>
+          {isLoading ? (
+            <div className="spinner-container">
+              <Oval/>
+            </div>
+          ):(
+            <button type="submit" className="button-enter">
             Entrar
           </button>
-          <Link to ="/register" class="register">Ainda não tenho uma conta</Link>
+          )}
+          <Link to ="/register" className="register">Ainda não tenho uma conta</Link>
         </form>
       </div>
     </div>

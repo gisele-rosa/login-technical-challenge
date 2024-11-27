@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Oval } from 'react-loader-spinner';
+import { createUser } from '../../utils/api';
 import './Register.css';
 import register from '../../assets/images/register.jpg';
 import chathappy from '../../assets/icons/chathappy.png';
@@ -7,30 +10,41 @@ const Register = () => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Login:', { name, email, password });
+    setIsLoading(true);
+    try {
+      const newRecord = await createUser(name, email, password);
+      console.log(`Dados criados com sucesso! ID: ${newRecord.id}`);
+      navigate('/email');
+    } catch (error) {
+      console.error('Erro ao criar os dados:', error);
+      setIsLoading(false);
+      throw error;
+    }
   };
 
   return (
-    <div class="register-container">
-      <img src={register} alt="register-happy-people" class="register-image"/>
-      <div class="register-form-container">
-        <form onSubmit={handleSubmit} class="register-form">
-          <div class="register-title">
+    <div className="register-container">
+      <img src={register} alt="register-happy-people" className="register-image"/>
+      <div className="register-form-container">
+        <form onSubmit={handleSubmit} className="register-form">
+          <div className="register-title">
             <h1>Venha ser Happy</h1>
             <img src={chathappy} alt="chat-happy"></img>
           </div>
-          <label bold>Nome</label>
+          <label>Nome</label>
           <input 
             type="text" 
             placeholder="Digite seu Nome" 
-            value={email} 
+            value={name} 
             onChange={(e) => setName(e.target.value)} 
             required 
           />
-          <label bold>E-mail</label>
+          <label>E-mail</label>
           <input 
             type="email" 
             placeholder="Digite seu e-mail" 
@@ -46,10 +60,16 @@ const Register = () => {
             onChange={(e) => setPassword(e.target.value)} 
             required 
           />
-          <button type="submit" class="button-enter">
+          {isLoading ? (
+            <div className="spinner-container">
+              <Oval/>
+            </div>
+          ):(
+          <button type="submit" className="button-enter">
             Registrar
           </button>
-          <a href="/" class="back">Voltar</a>
+          )}
+          <a href="/" className="back">Voltar</a>
         </form>
       </div>
     </div>
