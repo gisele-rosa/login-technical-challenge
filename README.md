@@ -40,7 +40,7 @@ a estrutura ficou assim:
 - services: na parte de envio de email estruturei como serviço.
 - Data: comunicação com o banco de dados, configurei o DataContext para acessar a entidade via Entity Framework.
 
-No frontend que é a parte que deverá interagir com o usuário, escolhi o React, que é uma biblioteca que estou tendo mais familiaridade, além disso,
+No frontend que é a parte que deverá interagir com o usuário, escolhi o React, que é uma biblioteca que tenho mais familiaridade, além disso,
 tem um ótimo desempenho e a integração com o backend se tornou mais simples. As imagens que aparecem nas telas foram retiradas do: https://br.freepik.com/.
 As ideias de como a tela deveriam ficar, foi desenhado utilizando o figma: https://www.figma.com/design/z0ry3WSPcfUKKuJidYy4ji/expectativa---tela-de-login?node-id=0-1&m=dev&t=HJ1mdsNnoQbBjhnX-1
 
