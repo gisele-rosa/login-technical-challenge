@@ -2,7 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login/Login';
 import Register from './pages/Register/Register';
 import Success from './pages/Success/Success';
-import ConfirmEmail from './pages/ConfirmEmail/ConfirmEmail';
+import SendEmail from './pages/SendEmail/SendEmail';
+import Confirmation from './pages/Confirmation/Confirmation';
 
 const App = () => {
   return (
@@ -11,7 +12,8 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/register" element={<Register/>} />
         <Route path="/success" element={<Success/>} />
-        <Route path="/email" element={<ConfirmEmail/>} />
+        <Route path="/email" element={<SendEmail/>} />
+        <Route path="/confirmation" element={<Confirmation/>} />
       </Routes>
     </Router>
   );

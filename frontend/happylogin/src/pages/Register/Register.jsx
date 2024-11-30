@@ -11,13 +11,54 @@ const Register = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+  const [passwordInvalid, setPasswordInvalid] = useState(false);
   const navigate = useNavigate();
+
+  const removeTagsScripts = (input) => {
+    const element = document.createElement('div');
+    if (input) {
+      element.innerText = input;
+      return element.innerHTML;
+    }
+    return '';
+  }
+
+  const validatePassword = (password) => {
+    const minLength = 8;
+    const hasNumber = /\d/;
+    
+    if (password.length < minLength) {
+      setErrorMessage('A senha deve ter pelo menos 8 caracteres.');
+      return false;
+    }
+    
+    if (!hasNumber.test(password)) {
+      setErrorMessage('A senha deve conter um número.');
+      return false;
+    }
+
+    setErrorMessage('');
+    setPasswordInvalid(false);
+    return true;
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
+
+    if (!validatePassword(password)) {
+      setIsLoading(false);
+      setPasswordInvalid(true);
+      return;
+    }
+
+    const validatedName = removeTagsScripts(name);
+    const validatedEmail = removeTagsScripts(email);
+    const validatedPassword = removeTagsScripts(password);
+
     try {
-      const newRecord = await createUser(name, email, password);
+      const newRecord = await createUser(validatedName, validatedEmail, validatedPassword);
       console.log(`Dados criados com sucesso! ID: ${newRecord.id}`);
       navigate('/email');
     } catch (error) {
@@ -58,14 +99,17 @@ const Register = () => {
             placeholder="Digite sua senha" 
             value={password} 
             onChange={(e) => setPassword(e.target.value)} 
-            required 
+            required
           />
+          {passwordInvalid && (
+            <div className="error-message">{errorMessage}</div>
+          )}
           {isLoading ? (
             <div className="spinner-container">
               <Oval/>
             </div>
           ):(
-          <button type="submit" className="button-enter">
+          <button type="submit" className="button-register">
             Registrar
           </button>
           )}

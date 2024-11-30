@@ -1,5 +1,6 @@
 using System.Net.Mail;
 using System.Net;
+using System.Reflection;
 
 public class EmailService
 {
@@ -18,19 +19,17 @@ public class EmailService
 
     public void SendConfirmationEmail(string toEmail, string name, string confirmationUrl)
     {
-        var body = $@"
-            <h1>Confirme seu email</h1>
-            <p>Olá, {name}, clique no botão abaixo para confirmar seu email e aproveitar os benefícios Happy:</p>
-            <a href='{confirmationUrl}' style='padding:10px 20px; background-color:blue; color:white; text-decoration:none;'>Confirmar Email</a>";
+        var variables = new Dictionary<string, string> { { "name", name }, {"link", confirmationUrl } };
+        var templateContent = GetEmailTemplate("confirmation_email", variables);
 
         var mailMessage = new MailMessage(_smtpUser, toEmail)
         {
             From = new MailAddress(_smtpUser),
             Subject = "Confirme seu email",
-            Body = body,
+            Body = templateContent,
             IsBodyHtml = true
         };
-        mailMessage.To.Add(toEmail);
+        mailMessage.CC.Add(toEmail);
 
         try
         {
@@ -46,5 +45,25 @@ public class EmailService
         {
             Console.WriteLine($"Erro ao enviar email: {ex.Message}");
         }
+    }
+
+    private string BuildEmailTemplatePath(string emailTitle)
+    {
+        var assemblyPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+
+        return Path.Combine(assemblyPath, "Templates", emailTitle);
+    }
+
+    private string GetEmailTemplate(string emailTitle, Dictionary<string, string> variables)
+    {
+        var emailFile = BuildEmailTemplatePath($"{emailTitle}.html");
+        var emailFileContent = File.ReadAllText(emailFile);
+
+        foreach ( var variable in variables )
+        {
+            emailFileContent = emailFileContent.Replace($"%{variable.Key}%", variable.Value);
+        }
+
+        return emailFileContent;
     }
 }
