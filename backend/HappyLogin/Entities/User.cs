@@ -12,5 +12,7 @@ namespace HappyLogin.Entities
         public DateTime CreateDate { get; set; }
 
         public bool EmailConfirmed { get; set; }
+
+        public string Token { get; set; } = string.Empty;
     }
 }

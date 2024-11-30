@@ -34,4 +34,14 @@ export const loginUser = async (email, password) => {
   }
 };
 
+export const confirmationEmail = async (token) => {
+  try {
+    const response = await api.get(`/api/confirm-email/${token}`);
+    return response.data;
+  } catch (error) {
+    console.error('Erro ao confirmar usuário:', error);
+    throw error; 
+  }
+};
+
 export default api;

@@ -109,7 +109,7 @@ const Register = () => {
               <Oval/>
             </div>
           ):(
-          <button type="submit" className="button-enter">
+          <button type="submit" className="button-register">
             Registrar
           </button>
           )}
