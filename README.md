@@ -6,8 +6,10 @@ Clone o projeto em um diretório
 * No projeto backend:
    - Faça download do .Net 6.0 sdk e Sql Server 2022, instale os dois e após isso abra um terminal na pasta backend
     execute:
+         ```
          dotnet ef database update (comando deverá criar o banco e a tabela).
          dotnet run.
+        ```
 * No projeto frontend:
    - Faça download do npm e no terminal na pasta frontend execute:
        npm install
