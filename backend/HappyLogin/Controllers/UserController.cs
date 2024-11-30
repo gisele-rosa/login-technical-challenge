@@ -1,17 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
 using HappyLogin.Dtos;
 using HappyLogin.Entities;
 using HappyLogin.Data;
 
 namespace HappyLogin.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api")]
     public class UserController : Controller
     {
         private readonly ILogger<UserController> _logger;
@@ -40,10 +34,13 @@ namespace HappyLogin.Controllers
                 EmailConfirmed = false
             };
 
+            var confirmationToken = Guid.NewGuid().ToString();
+            user.Token = confirmationToken;
+
             _context.Users.Add(user);
             _context.SaveChanges();
 
-            var confirmationUrl = $"https://seusite.com/confirm-email/{user.Id}";
+            var confirmationUrl = $"http://localhost:3000/confirmation?token={confirmationToken}";
             _emailService.SendConfirmationEmail(user.Email, user.Name, confirmationUrl);
 
             return Ok("Usuário registrado com sucesso!");
@@ -53,8 +50,16 @@ namespace HappyLogin.Controllers
         public IActionResult Login([FromBody] LoginDto dto)
         {
             var user = _context.Users.SingleOrDefault(u => u.Email == dto.Email);
+
             if (user == null || !BCrypt.Net.BCrypt.Verify(dto.Password, user.Password))
+            {
                 return Unauthorized("Credenciais inválidas.");
+            }
+            
+            if (!user.EmailConfirmed)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, "Email não confirmado!");
+            }
 
             var response = new UserResponseDto
             {

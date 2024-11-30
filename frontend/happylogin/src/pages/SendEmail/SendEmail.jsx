@@ -1,8 +1,8 @@
 import React from 'react';
-import './ConfirmEmail.css';
+import './SendEmail.css';
 import email from '../../assets/images/email-send.jpg';
 
-const ConfirmEmail = () => {
+const SendEmail = () => {
 
   return (
     <div className="email-container">
@@ -11,4 +11,4 @@ const ConfirmEmail = () => {
   );
 };
 
-export default ConfirmEmail;
+export default SendEmail;

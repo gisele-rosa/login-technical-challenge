@@ -61,7 +61,7 @@
   font-size: 16px;
 }
 
-.button-enter {
+.button-register {
   padding: 10px;
   background: #57A1D4;
   color: white;
@@ -71,10 +71,10 @@
   height: 43px;
   font-size: 24px;
   font-weight: bold; 
-  margin-top: 20px;
+  margin-top: 25px;
 }
 
-.button-enter:hover {
+.button-register:hover {
   background: #3275A4;
 }
 

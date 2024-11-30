@@ -33,7 +33,7 @@
   }
 }
 
-.login-form label{
+.login-label{
   margin-top: 20px;
   margin-bottom: 5px;
   font-weight: bold; 
@@ -61,12 +61,6 @@
   font-size: 16px;
 }
 
-.forgot-password {
-  margin-left: auto;
-  margin-bottom: 40px;
-  color: black;
-}
-
 .button-enter {
   padding: 10px;
   background: #57A1D4;
@@ -76,7 +70,8 @@
   border-radius: 10px;
   height: 43px;
   font-size: 24px;
-  font-weight: bold; 
+  font-weight: bold;
+  margin-top: 50px;
 }
 
 .button-enter:hover {
@@ -93,5 +88,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.input-error {
+  border: 2px solid red;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 5px;
 }
   
