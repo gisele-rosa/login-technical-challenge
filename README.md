@@ -33,3 +33,14 @@ Clone o projeto em um diretório
 * o frontend após executar os passos acima, consigo testar as funcionalidades.
   ![image](https://github.com/user-attachments/assets/f45bdd4b-432e-41d3-9c2d-528fd49f987f)
 
+# Explicação
+Minha ideia foi arquitetura em camadas, algumas caracteristicas do microsserviços e com os padrões mais utilizados como DTO, injeção de depedência e clean code.
+a estrutura ficou assim:
+- Controller: responsável pela validação de entrada(Dtos), processar as informações, chamar os serviços necessários e retornar respostas.
+- services: na parte de envio de email estruturei como serviço.
+- Data: comunicação com o banco de dados, configurei o DataContext para acessar a entidade via Entity Framework.
+
+No frontend que é a parte que deverá interagir com o usuário, escolhi o React, que é uma biblioteca que estou tendo mais familiaridade, além disso,
+tem um ótimo desempenho e a integração com o backend se tornou mais simples. As imagens que aparecem nas telas foram retiradas do: https://br.freepik.com/.
+As ideias de como a tela deveriam ficar, foi desenhado utilizando o figma: https://www.figma.com/design/z0ry3WSPcfUKKuJidYy4ji/expectativa---tela-de-login?node-id=0-1&m=dev&t=HJ1mdsNnoQbBjhnX-1
+
