@@ -6,7 +6,9 @@ const Success = () => {
 
   return (
     <div className="success-container">
+      <p className="success-title">Login com sucesso</p>
       <img src={success} alt="register-happy-people" className="success-image"/>
+      <a href="/" className="exit">Sair</a>
     </div>
   );
 };

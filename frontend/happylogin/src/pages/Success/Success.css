@@ -1,12 +1,27 @@
 .success-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
+.success-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 100px;
+}
+
 .success-image {
-    max-width: 100%; 
-    max-height: 100%; 
+    max-width: 90%; 
+    max-height: 90%; 
     object-fit: contain;
-  }
+}
+
+.exit {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 100px;
+    text-decoration: none;
+    color: black;
+}
