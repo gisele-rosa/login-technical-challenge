@@ -6,7 +6,7 @@ Clone o projeto em um diretório
 * No projeto backend:
    - Faça download do .Net 6.0 sdk e Sql Server 2022, instale os dois.
    - No appsettings.json precisa adicionar a connection string válida e nas configs do email, precisa adicionar smtpuser e smtpass válidos, nos meus testes criei o email happylogintechnicaltest@gmail.com e gerei uma chave de aplicativo para preencher o smtpass.
-   - e após isso abra um terminal na pasta backend
+   - Após esses passos, abra um terminal na pasta backend
     execute:
 
        ```
