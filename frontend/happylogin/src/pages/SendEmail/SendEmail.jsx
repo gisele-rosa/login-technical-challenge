@@ -6,7 +6,9 @@ const SendEmail = () => {
 
   return (
     <div className="email-container">
+      <p className="email-title">Enviamos um e-mail de confirmação!</p>
       <img src={email} alt="email-send" className="email-image"/>
+      <a href="/" className="email-back">Voltar para a tela de Login</a>
     </div>
   );
 };

@@ -26,9 +26,10 @@ const Confirmation = () => {
   }, [location]);
 
   return (
-    
     <div className="confirmation-container">
+      <p className="confirmation-title">e-mail confirmado!</p>
       <img src={confirm} alt="confirmed-email" className="confirmation-image"/>
+      <a href="/" className="confirmation-back">Voltar para a tela de Login</a>
     </div>
   );
 };

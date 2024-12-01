@@ -20,17 +20,26 @@ namespace HappyLogin.Controllers
         [HttpGet("confirm-email/{token}")]
         public IActionResult Register(string token)
         {
-            var user = _context.Users.FirstOrDefault(u => u.Token == token);
-
-            if (user == null)
+            try
             {
-                return BadRequest("Token inválido ou expirado.");
+                var user = _context.Users.FirstOrDefault(u => u.Token == token);
+
+                if (user == null)
+                {
+                    _logger.LogError("Token inválido");
+                    return BadRequest("Token inválido ou expirado.");
+                }
+
+                user.EmailConfirmed = true;
+                _context.SaveChanges();
+
+                return Ok("Usuário confirmado com sucesso!");
             }
-
-            user.EmailConfirmed = true;
-            _context.SaveChanges();
-
-            return Ok("Usuário confirmado com sucesso!");
+            catch (Exception ex) 
+            {
+                _logger.LogError(ex, "Erro ao confirmar usuário");
+                return StatusCode(500, "Erro interno do servidor.");
+            }
         }
     }
 }

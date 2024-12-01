@@ -1,12 +1,27 @@
 .confirmation-container{
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
 .confirmation-image {
-    max-width: 100%; 
-    max-height: 100%; 
+    max-width: 80%; 
+    max-height: 80%; 
     object-fit: contain;
-  }
+}
+
+.confirmation-back {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 100px;
+    text-decoration: none;
+    color: black;
+}
+
+.confirmation-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 100px;
+}
