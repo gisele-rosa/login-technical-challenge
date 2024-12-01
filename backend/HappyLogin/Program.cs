@@ -2,6 +2,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using HappyLogin.Data;
 using Serilog;
+using HappyLogin.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
