@@ -18,11 +18,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<DataContext>(options =>
     options.UseSqlServer(connectionString));
 
+var emailSettings = builder.Configuration.GetSection("EmailSettings").Get<EmailSettings>();
+
 builder.Services.AddSingleton(new EmailService(
-    smtpServer: "smtp.gmail.com",
-    smtpPort: 587,
-    smtpUser: "happylogintechnicaltest@gmail.com",
-    smtpPass: "nvgbduuvmlgoayci"
+    smtpServer: emailSettings.SmtpServer,
+    smtpPort: emailSettings.SmtpPort,
+    smtpUser: emailSettings.SmtpUser,
+    smtpPass: emailSettings.SmtpPass
 ));
 
 builder.Services.AddControllers();
