@@ -35,10 +35,13 @@ Clone o projeto em um diretório
 
 # Explicação
 Minha ideia foi arquitetura em camadas, algumas caracteristicas do microsserviços e com os padrões mais utilizados como DTO, injeção de depedência e clean code.
-a estrutura ficou assim:
+A estrutura ficou assim:
 - Controller: responsável pela validação de entrada(Dtos), processar as informações, chamar os serviços necessários e retornar respostas.
 - services: na parte de envio de email estruturei como serviço.
 - Data: comunicação com o banco de dados, configurei o DataContext para acessar a entidade via Entity Framework.
+
+Para controle dos logs estou usando o serilog que é uma ferramenta que gerencia os logs de forma estruturada, configurei no início do program.cs com o loggerconfiguration(), que especifica que os logs serão salvos
+em arquivos diários, adicionei o builder.host.userserilog() que garante que as mensagens da aplicação passem pelo serilog.
 
 No frontend que é a parte que deverá interagir com o usuário, escolhi o React, que é uma biblioteca que tenho mais familiaridade, além disso,
 tem um ótimo desempenho e a integração com o backend se tornou mais simples. As imagens que aparecem nas telas foram retiradas do: https://br.freepik.com/.
